@@ -1,0 +1,28 @@
+{
+  "name": "mailcap",
+  "version": "0.0.1",
+  "description": "Mail capture and archival server for RethinkDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/internalfx/mailcap.git"
+  },
+  "author": "Bryan Morris",
+  "license": "ISC",
+  "homepage": "https://github.com/internalfx/mailcap#readme",
+  "bugs": {
+    "url": "https://github.com/internalfx/mailcap/issues"
+  },
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "co": "^4.6.0",
+    "lodash": "^4.6.1",
+    "mailparser": "^0.5.3",
+    "rethinkdb-regrid": "^0.4.2",
+    "rethinkdbdash": "^2.2.18",
+    "smtp-server": "^1.9.0"
+  }
+}
