@@ -3,7 +3,7 @@
   "bin": {
     "mailcap": "./bin/mailcap"
   },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Mail capture and archival server for RethinkDB",
   "main": "./src/index.js",
   "scripts": {
