@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var pjson = require('../package.json')
+global.VERSION = pjson.version
+global.Promise = require('bluebird')
+var _ = require('lodash')
+var co = require('co')
+var server = require('../src/server')
+var bootstrap = require('../src/bootstrap')
+var argv = require('minimist')(process.argv.slice(2))
+var command = _.first(argv['_'])
+argv['_'] = argv['_'].slice(1)
+
+/* global VERSION */
+
+var HELPTEXT = `
+
+    Mailcap ${VERSION}
+    ==============================
+
+    Commands:
+      mailcap bootstrap                 Create new configuration file in current directory
+      mailcap start                     Start Mailcap server.
+      mailcap                           Show this screen.
+
+`
+
+co(function *() {
+  if (command === 'bootstrap') {
+    yield bootstrap(argv)
+  } else if (command === 'start') {
+    server(argv)
+  } else {
+    console.log(HELPTEXT)
+  }
+})
