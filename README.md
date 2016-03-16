@@ -10,4 +10,39 @@ Mailcap makes it easy to store emails in a RethinkDB database.
 - Emails are parsed into a JSON format that is easy to search.
 - File attachments are saved efficiently using [ReGrid](https://github.com/internalfx/regrid)
 
-### Getting Started
+## Getting Started
+
+###### Install Mailcap
+
+```
+npm install -g mailcap
+```
+
+###### Create config.js
+
+```
+mailcap bootstrap
+```
+
+###### Edit config.js
+
+```javascript
+module.exports = {
+  port: 2525, // Port server listens on
+  address: '', // Email address mail will be sent to
+  table: 'email', // RethinkDB table to store mail in
+  rethinkdb: {
+    host: 'localhost', // RethinkDB host address
+    db: 'test' // RethinkDB database name
+  },
+  regrid: {
+    bucketName: 'email' // ReGrid bucket name
+  }
+}
+```
+
+###### Start mailcap Server
+
+```
+mailcap start
+```
