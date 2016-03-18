@@ -55,9 +55,10 @@ module.exports = function (argv) {
           to: _.compact(_.map(mail.to, (i) => _.isString(i.address) ? i.address.toLowerCase() : null)),
           cc: _.compact(_.map(mail.cc, (i) => _.isString(i.address) ? i.address.toLowerCase() : null)),
 
-          attachments: attachments,
-          addresses: _.uniq(obj.from.concat(obj.to, obj.cc))
+          attachments: attachments
         }
+
+        obj.addresses = _.uniq(obj.from.concat(obj.to, obj.cc))
 
         let results = yield r.table(config.table).insert(obj, {returnChanges: true}).run()
         let email = results.changes[0].new_val
