@@ -41,7 +41,7 @@ module.exports = function (argv) {
       co(function *() {
         mail.attachments = mail.attachments || []
         let attachments = mail.attachments.map(function (attachment) {
-          return _.pick(attachment, 'contentType', 'fileName', 'length')
+          return _.omit(attachment, 'content')
         })
         let obj = {
           html: mail.html,
