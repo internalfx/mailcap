@@ -41,8 +41,7 @@ module.exports = function (argv) {
       co(function *() {
         mail.attachments = mail.attachments || []
         let attachments = mail.attachments.map(function (attachment) {
-          var obj = _.pick(attachment, 'contentType', 'fileName', 'length')
-          return obj
+          return _.pick(attachment, 'contentType', 'fileName', 'length')
         })
         let obj = {
           html: mail.html,
@@ -56,10 +55,9 @@ module.exports = function (argv) {
           to: _.compact(_.map(mail.to, (i) => _.isString(i.address) ? i.address.toLowerCase() : null)),
           cc: _.compact(_.map(mail.cc, (i) => _.isString(i.address) ? i.address.toLowerCase() : null)),
 
-          attachments: attachments
+          attachments: attachments,
+          addresses: _.uniq(obj.from.concat(obj.to, obj.cc))
         }
-
-        obj.addresses = _.uniq(obj.from.concat(obj.to, obj.cc))
 
         let results = yield r.table(config.table).insert(obj, {returnChanges: true}).run()
         let email = results.changes[0].new_val
